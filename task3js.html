@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+    <head>
+      <title>Задача 3 JS</title>
+		
+		<script type="text/javascript" src="http://vk.com/js/api/openapi.js" ></script>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+		
+		<script src="https://vk.com/js/api/openapi.js?139" type="text/javascript"></script>
+		
+	</head>
+    <body> 
+		<div id="login_button" onclick="VK.Auth.login(authInfo);"></div>
+		
+		<script language="javascript">
+			function authInfo(response) {
+			  
+			  if (response.session) {
+					var id = response.session.mid;
+				}
+				VK.Api.call('users.get', {uids: id, fields: 'sex, photo_big'}, function(r) {
+					if(r.response) {
+						//alert(r.response[0].sex);
+						console.log(r.response);
+					}
+				});
+			}
+			VK.Auth.getLoginStatus(authInfo);
+			VK.UI.button('login_button');
+
+			VK.init({
+				apiId: 5888582  // ID вашего приложения VK
+			});
+			//console.log("test");
+			var arQuery = ["би-2", "sum", "ддт", "лепс"];
+
+			function getListGroups(arQuery, index) {
+				VK.Api.call('groups.search', {q: arQuery[index], type: 'event', city_id: 1, count: 100}, function(data) {
+					console.log(data);
+					if (data.response) {
+					for (i = 1; i < data.response.length; i++) {
+						$('.vk_group').append('<img src="' + data.response[i].photo_medium + '"/>' + data.response[i].name + '<br/>' + data.response[i].screen_name + '<br/>');
+						//console.log(data.response[i]);
+						//console.log(data.response.length);
+					}
+						if (index < arQuery.length) // проверка массива не конец 
+						{
+							index++;
+							setTimeout(function() { getListGroups(arQuery, index); }, 100);                                 
+						}
+						//else return;
+					}
+				});
+			}
+
+			getListGroups(arQuery, 0);
+
+			// информация о группе
+			function getGroups(group_id) {
+				VK.Api.call('groups.getById', {group_id: group_id, fields: 'photo_50'}, function(r) {
+						console.log(r);
+						if(r.response) {
+							$('.group_info').html('<img src="' + r.response[0].photo_50 + '"/><br/>' + r.response[0].name);
+						}
+				});
+			}
+		</script>
+		
+		<p>Получение списка событий (с использованием VK API)</p>
+		<div class="vk_group"></div>
+		<div class="group_info"></div>
+
+	</body>
+	
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+   <head>
+      <title>Задача 2 JS</title>
+	  <script type = "text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script>				
+			$(document).ready(function(){
+				$("#target").click(function(){
+					$("#target").animate({marginTop: "-=380px"}, 500);
+					$("#target").animate({marginTop: "+=380px"}, 500);
+					$("#target").animate({marginTop: "-=350px"}, 500);
+					$("#target").animate({marginTop: "+=350px"}, 500);
+					$("#target").animate({marginTop: "-=200px"}, 600);
+					$("#target").animate({marginTop: "+=200px"}, 600);
+					$("#target").animate({marginTop: "-=150px"}, 600);
+					$("#target").animate({marginTop: "+=150px"}, 600);
+					$("#target").animate({marginTop: "-=100px"}, 700);
+					$("#target").animate({marginTop: "+=100px"}, 700);
+					$("#target").animate({marginTop: "-=50px"}, 700);
+					$("#target").animate({marginTop: "+=50px"}, 700);
+				});
+			});
+      </script>
+	 
+      <style>
+	    p{
+	      	text-align: center;
+	    }
+        div{ 
+			margin: auto;
+			width: 300px; 
+			height: 300px; 
+			background: grey;
+			border-radius: 1000px;
+			margin-top: 380px;
+		}
+      </style>
+   </head>
+	
+   <body>
+   		<p>Переписать функцию bounce jquery</p>
+		<div id = "target"> </div>
+   </body>
+</html>

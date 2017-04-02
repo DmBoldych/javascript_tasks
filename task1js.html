@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru" >
+    <head>
+        <meta charset="utf-8" />
+        <title>Задача 1 JS</title>
+
+		<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+		<script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
+		
+		<script>
+			$(document).on("input", "input:text", function () {
+			var strClass = $(this).prop("class");
+			var intTotal = 0;
+			$.each($("input:text." + strClass), function () {
+				var intInputValue = parseInt($(this).val());
+				if (!isNaN(intInputValue))
+				{
+					intTotal = intTotal + intInputValue;
+				}
+			});
+			$(this).parent("td").siblings("td:last").text(intTotal);
+		});
+		</script>
+		
+    </head>
+    <body>	
+		<div align = "center">
+			<p>На странице есть таблица с тремя полями (число1, число2, результат). Необходимо посчитать результат сложения двух столбцов и подставить в третий.</p>
+			<table id="sum_table">
+				<tr class="titlerow">
+					<th>Число1</th>
+					<th>Число2</th>
+					<th>Результат</th>
+			    </tr>
+				    <tr>
+						<td>
+						  <input type="text" class="a">
+						</td>
+						<td>
+						  <input type="text" class="a">
+						</td>
+						<td class="total"></td>
+					</tr>
+				    <tr>
+						<td>
+						  <input type="text" class="b">
+						</td>
+						<td>
+						  <input type="text" class="b">
+						</td>
+						<td class="total"></td>
+					</tr>
+				    <tr>
+						<td>
+						  <input type="text" class="c">
+						</td>
+						<td>
+						  <input type="text" class="c">
+						</td>
+						<td class="total"></td>
+					</tr>
+			</table>
+		</div>
+    </body>
+</html>
